@@ -5,13 +5,15 @@ import Features from "@/components/Features";
 import WhySocials from "@/components/WhySocials";
 import BetaSignup from "@/components/BetaSignup";
 import Footer from "@/components/Footer";
+import ParallaxGrid from "@/components/ParallaxGrid";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Index = () => {
   useScrollReveal();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <ParallaxGrid />
       <Navbar />
       <Hero />
       <WhatIsSocials />
