@@ -23,8 +23,8 @@ export default function Navbar() {
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
-        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-2xl font-bold tracking-tight text-foreground">
-          Socials
+        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="p-0">
+          <img src="/logo.png" alt="Socials logo" className="h-8 w-auto" />
         </button>
 
         {/* Desktop Links */}

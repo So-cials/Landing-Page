@@ -2,9 +2,21 @@ import { useState } from "react";
 import { Sparkles, Rocket, HeartHandshake } from "lucide-react";
 
 const perks = [
-  { icon: Sparkles, text: "Early access before public launch" },
-  { icon: HeartHandshake, text: "Shape the product roadmap" },
-  { icon: Rocket, text: "Priority onboarding & support" },
+  {
+    icon: Sparkles,
+    text: "Early access before public launch",
+    iconClassName: "text-primary",
+  },
+  {
+    icon: HeartHandshake,
+    text: "Shape the product roadmap",
+    iconClassName: "text-secondary",
+  },
+  {
+    icon: Rocket,
+    text: "Priority onboarding & support",
+    iconClassName: "text-accent",
+  },
 ];
 
 export default function BetaSignup() {
@@ -52,28 +64,35 @@ export default function BetaSignup() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">I am a…</label>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">I am a...</label>
                   <div className="flex gap-3">
-                    {(["creator", "client"] as const).map((r) => (
-                      <button
-                        key={r}
-                        type="button"
-                        onClick={() => setRole(r)}
-                        className={`flex-1 border-3 border-foreground rounded-lg px-4 py-3 font-medium text-sm capitalize transition-colors ${
-                          role === r
-                            ? "bg-primary text-primary-foreground shadow-solid-sm"
-                            : "bg-card text-foreground hover:bg-muted"
-                        }`}
-                      >
-                        {r}
-                      </button>
-                    ))}
+                    {(["creator", "client"] as const).map((r) => {
+                      const selectedClass =
+                        r === "creator"
+                          ? "bg-secondary text-secondary-foreground shadow-solid-sm"
+                          : "bg-accent text-accent-foreground shadow-solid-sm";
+
+                      return (
+                        <button
+                          key={r}
+                          type="button"
+                          onClick={() => setRole(r)}
+                          className={`flex-1 border-3 border-foreground rounded-lg px-4 py-3 font-medium text-sm capitalize transition-colors duration-200 hover:scale-105 ${
+                            role === r
+                              ? selectedClass
+                              : "bg-card text-foreground hover:bg-muted"
+                          }`}
+                        >
+                          {r}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full border-3 border-foreground bg-primary text-primary-foreground py-3.5 rounded-lg font-bold text-base shadow-solid-lg snap-hover"
+                  className="w-full border-3 border-foreground bg-primary text-primary-foreground py-3.5 rounded-lg font-bold text-base shadow-solid-lg transition-colors duration-200 hover:scale-105"
                 >
                   Request Beta Access
                 </button>
@@ -85,7 +104,7 @@ export default function BetaSignup() {
                 <div className="grid sm:grid-cols-3 gap-4">
                   {perks.map((p) => (
                     <div key={p.text} className="flex items-center gap-2.5 text-sm text-muted-foreground">
-                      <p.icon className="w-4 h-4 text-primary shrink-0" />
+                      <p.icon className={`w-4 h-4 shrink-0 ${p.iconClassName}`} />
                       {p.text}
                     </div>
                   ))}

@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import WhatIsSocials from "@/components/WhatIsSocials";
+import MilestonesSection from "@/components/MilestonesSection";
 import Features from "@/components/Features";
 import WhySocials from "@/components/WhySocials";
 import BetaSignup from "@/components/BetaSignup";
@@ -14,13 +15,16 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <ParallaxGrid />
-      <Navbar />
-      <Hero />
-      <WhatIsSocials />
-      <Features />
-      <WhySocials />
-      <BetaSignup />
-      <Footer />
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <WhatIsSocials />
+        <Features />
+        <MilestonesSection />
+        <WhySocials />
+        <BetaSignup />
+        <Footer />
+      </div>
     </div>
   );
 };
