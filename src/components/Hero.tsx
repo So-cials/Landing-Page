@@ -50,10 +50,18 @@ export default function Hero() {
               </button>
               <button
                 onClick={() => scrollTo("features")}
-                className="border-3 border-foreground bg-card text-foreground px-7 py-3.5 rounded-lg font-semibold text-base shadow-solid snap-hover"
+                className="border-3 border-foreground bg-accent text-accent-foreground px-7 py-3.5 rounded-lg font-semibold text-base shadow-solid snap-hover"
               >
                 See Features
               </button>
+              <a
+                href="https://forms.gle/ZUvqsc9R1mRqjTrPA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-3 border-foreground bg-secondary text-secondary-foreground px-7 py-3.5 rounded-lg font-semibold text-base shadow-solid snap-hover inline-flex items-center justify-center"
+              >
+                Feasibility Study
+              </a>
             </div>
           </div>
 
@@ -80,7 +88,7 @@ export default function Hero() {
                   <span className="font-semibold text-foreground block">Escrow Protected</span>
                   <span className="text-sm text-muted-foreground">Secure payments held in escrow until delivery.</span>
                 </div>
-                <span className="ml-auto text-xs font-medium bg-accent/10 text-accent px-2.5 py-1 rounded-md">Launching in Beta</span>
+                <span className="ml-auto text-xs font-bold bg-accent/10 text-accent px-2.5 py-1 rounded-md">Launching in Beta</span>
               </div>
             </div>
 
@@ -101,4 +109,6 @@ export default function Hero() {
     </section>
   );
 }
+
+
 
