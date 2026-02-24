@@ -1,4 +1,5 @@
 import CanvasBackground from "./CanvasBackground";
+import ParallaxGrid from "./ParallaxGrid";
 import { CheckCircle, Shield, BarChart3 } from "lucide-react";
 
 export default function Hero() {
@@ -9,6 +10,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
       <CanvasBackground />
+      <ParallaxGrid />
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left — Copy */}
