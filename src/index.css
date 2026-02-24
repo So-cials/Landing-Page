@@ -1,95 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+    --background: 40 33% 97%;        /* #f8f6f1 */
+    --foreground: 0 0% 7%;           /* #111111 */
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 7%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 7%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 207 98% 54%;          /* #1499fe */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 228 46% 69%;        /* #8093df */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 32 83% 59%;            /* #ee9f3d */
+    --accent-foreground: 0 0% 7%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 40 20% 92%;
+    --muted-foreground: 0 0% 40%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 7%;
+    --input: 0 0% 7%;
+    --ring: 207 98% 54%;
 
-    --radius: 0.5rem;
+    --radius: 10px;
+
+    --shadow-offset: 4px;
+    --shadow-color: 0 0% 7%;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
@@ -100,6 +58,111 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body antialiased;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-body);
+  }
+}
+
+@layer components {
+  /* Solid offset shadow — the Socials signature */
+  .shadow-solid {
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 hsl(var(--shadow-color));
+  }
+  .shadow-solid-sm {
+    box-shadow: 2px 2px 0 hsl(var(--shadow-color));
+  }
+  .shadow-solid-lg {
+    box-shadow: 6px 6px 0 hsl(var(--shadow-color));
+  }
+
+  /* Snap hover: lift + shadow shift */
+  .snap-hover {
+    @apply transition-all duration-150 ease-out;
+  }
+  .snap-hover:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 hsl(var(--shadow-color));
+  }
+
+  /* Scroll reveal base */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger children */
+  .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+  .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
+  .reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.2s; }
+  .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.3s; }
+  .reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.35s; }
+  .reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.4s; }
+
+  /* Hero stagger */
+  .hero-stagger > *:nth-child(1) { animation-delay: 0s; }
+  .hero-stagger > *:nth-child(2) { animation-delay: 0.1s; }
+  .hero-stagger > *:nth-child(3) { animation-delay: 0.15s; }
+  .hero-stagger > *:nth-child(4) { animation-delay: 0.25s; }
+  .hero-stagger > *:nth-child(5) { animation-delay: 0.35s; }
+
+  @keyframes hero-enter {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .hero-animate {
+    animation: hero-enter 0.6s ease-out both;
+  }
+
+  /* Pulsing border accent */
+  @keyframes pulse-border {
+    0%, 100% { border-color: hsl(var(--primary)); }
+    50% { border-color: hsl(var(--accent)); }
+  }
+  .pulse-border {
+    animation: pulse-border 2.5s ease-in-out infinite;
+  }
+
+  /* Float drift for cards */
+  @keyframes float-drift {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .float-drift {
+    animation: float-drift 4s ease-in-out infinite;
+  }
+
+  /* Shimmer sweep */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .shimmer-border {
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-animate { animation: none; opacity: 1; transform: none; }
+  .snap-hover:hover { transform: none; }
+  .float-drift { animation: none; }
+  .pulse-border { animation: none; }
+  .shimmer-border { animation: none; }
 }
