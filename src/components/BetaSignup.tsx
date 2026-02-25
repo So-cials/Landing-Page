@@ -43,6 +43,7 @@ export default function BetaSignup() {
           "form-name": "beta-signup",
           email,
           role: role || "unspecified",
+          "bot-field": "",
         }),
       });
 
