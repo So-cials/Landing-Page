@@ -23,11 +23,39 @@ export default function BetaSignup() {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState<"creator" | "client" | "">("");
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const encode = (data: Record<string, string>) =>
+    Object.keys(data)
+      .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+      .join("&");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    setSubmitted(true);
+    setError("");
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "beta-signup",
+          email,
+          role: role || "unspecified",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      setSubmitted(true);
+      setEmail("");
+      setRole("");
+    } catch {
+      setError("Could not submit right now. Please try again.");
+    }
   };
 
   return (
@@ -49,11 +77,26 @@ export default function BetaSignup() {
                 <p className="text-muted-foreground text-lg">Be among the first to try Socials.</p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form
+                name="beta-signup"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
+                className="space-y-5"
+              >
+                <input type="hidden" name="form-name" value="beta-signup" />
+                <p className="hidden">
+                  <label>
+                    Don't fill this out:
+                    <input name="bot-field" />
+                  </label>
+                </p>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1.5">Email</label>
                   <input
                     id="email"
+                    name="email"
                     type="email"
                     required
                     placeholder="you@example.com"
@@ -89,6 +132,7 @@ export default function BetaSignup() {
                     })}
                   </div>
                 </div>
+                <input type="hidden" name="role" value={role || "unspecified"} />
 
                 <button
                   type="submit"
@@ -96,6 +140,8 @@ export default function BetaSignup() {
                 >
                   Request Beta Access
                 </button>
+
+                {error ? <p className="text-center text-xs text-destructive">{error}</p> : null}
 
                 <p className="text-center text-xs text-muted-foreground">No spam. Early access invites first.</p>
               </form>
