@@ -1,6 +1,6 @@
 export default function MilestonesSection() {
   const total = 12;
-  const completed = 3; // Adjust as needed
+  const completed = 5;
 
   return (
     <section className="py-16 px-6">

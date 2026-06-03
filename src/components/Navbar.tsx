@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import logo from "/logo.png";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,7 +25,7 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="p-0">
-          <img src="/logo.png" alt="Socials logo" className="h-8 w-auto" />
+          <img src={logo} alt="Socials logo" className="h-8 w-auto" />
         </button>
 
         {/* Desktop Links */}

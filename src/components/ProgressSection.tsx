@@ -1,7 +1,7 @@
 export default function ProgressSection() {
-  // For demo, let's say 7/12 points complete
+
   const totalPoints = 12;
-  const completed = 7;
+  const completed = 5;
 
   return (
     <section className="py-16 px-6 flex flex-col items-center">
